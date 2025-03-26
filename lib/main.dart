@@ -1,3 +1,4 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
@@ -58,6 +59,16 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 // Status & Control
+                SizedBox(height: 20),
+                AnimatedFlipCounter(
+                  value: cups,
+                  suffix: " cups",
+                  textStyle: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xff62CDFA),
+                  ),
+                ),
               ],
             ),
           ),

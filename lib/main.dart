@@ -33,9 +33,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int cups = 4;
-  double value = 0.5;
-  double prevValue = 0.5;
+  int cups = 0;
+  double value = 0.0;
+  double prevValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 AnimatedFlipCounter(
                   value: cups,
                   suffix: " cups",
-                  duration: Duration(milliseconds: 700),
+                  duration: Duration(milliseconds: 500),
                   textStyle: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w700,
@@ -95,6 +95,56 @@ class _HomePageState extends State<HomePage> {
                       child: Icon(
                         CupertinoIcons.refresh_bold,
                         color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: CupertinoButton(
+                        color: Color(0xff62CDFA),
+                        borderRadius: BorderRadius.circular(15),
+                        onPressed: () {
+                          double result = 150 / 2000;
+                          prevValue = value;
+                          value += result;
+                          if (value >= 1) {
+                            value = 1;
+                          } else {
+                            cups++;
+                          }
+                          setState(() {});
+                        },
+                        child: Text(
+                          "150ml",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: CupertinoButton(
+                        color: Color(0xff62CDFA),
+                        borderRadius: BorderRadius.circular(15),
+                        onPressed: () {
+                          double result = 250 / 2000;
+                          prevValue = value;
+                          value += result;
+                          if (value >= 1) {
+                            value = 1;
+                          } else {
+                            cups++;
+                          }
+                          setState(() {});
+                        },
+                        child: Text(
+                          "250ml",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ],

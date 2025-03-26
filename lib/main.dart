@@ -34,7 +34,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int cups = 4;
-  double value = .5;
+  double value = 0.5;
   double prevValue = 0.5;
 
   @override
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                 AnimatedFlipCounter(
                   value: cups,
                   suffix: " cups",
-                  duration: Duration(milliseconds: 1000),
+                  duration: Duration(milliseconds: 700),
                   textStyle: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w700,

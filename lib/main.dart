@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   int cups = 0;
   double value = 0.0;
   double prevValue = 0.0;
+  int currentCup = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -82,22 +83,6 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 20),
                 Row(
                   children: [
-                    CupertinoButton(
-                      color: Colors.red,
-                      onPressed: () {
-                        prevValue = value;
-                        cups = 0;
-                        value = 0;
-                        setState(() {});
-                      },
-                      borderRadius: BorderRadius.circular(100),
-                      padding: EdgeInsets.zero,
-                      child: Icon(
-                        CupertinoIcons.refresh_bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: 10),
                     Expanded(
                       child: CupertinoButton(
                         color: Color(0xff62CDFA),
@@ -148,6 +133,64 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ],
+                ),
+
+                // Cups
+                SizedBox(height: 20),
+                SizedBox(
+                  height: 200,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          currentCup = index + 1;
+                          prevValue = value;
+                          value = currentCup * .125;
+                          cups = currentCup;
+                          setState(() {});
+                        },
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 500),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                "assets/cup.png",
+                              ),
+                              colorFilter: ColorFilter.mode(
+                                index >= currentCup ? Colors.grey : Colors.transparent,
+                                BlendMode.srcATop,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                CupertinoButton(
+                  color: Colors.red,
+                  onPressed: () {
+                    prevValue = value;
+                    cups = 0;
+                    value = 0;
+                    currentCup = 0;
+                    setState(() {});
+                  },
+                  borderRadius: BorderRadius.circular(100),
+                  child: Center(
+                    child: Icon(
+                      CupertinoIcons.refresh_bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
